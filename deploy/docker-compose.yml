@@ -11,7 +11,9 @@ services:
       - "12000:3000"
     env_file:
       - ./env/production.env
-    links:
+    # links:
+    #   - mongodb
+    external_links:
       - mongodb
     # depends_on:
     #   - mongodb
