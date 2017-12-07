@@ -11,21 +11,21 @@ services:
       - "12000:3000"
     env_file:
       - ./env/production.env
-    # links:
+    links:
+      - mongodb-buzon
+    # external_links:
     #   - mongodb
-    external_links:
-      - mongodb
-    # depends_on:
-    #   - mongodb
+    depends_on:
+      - mongodb-buzon
     command: "npm start"
-  # mongodb:
-  #   image: mongo:latest
-  #   container_name: "mongodb"
-  #   environment:
-  #     - MONGO_DATA_DIR=/data/db
-  #     - MONGO_LOG_DIR=/dev/null
-  #   volumes:
-  #     - /opt/buzon-quejas/data:/data/db
-  #   ports:
-  #       - 27017:27017
-  #   command: mongod --smallfiles --logpath=/dev/null
+  mongodb-buzon:
+    image: mongo:latest
+    container_name: "mongodb-buzon"
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - /opt/buzon-quejas/data:/data/db
+    ports:
+        - 27017:27017
+    command: mongod --smallfiles --logpath=/dev/null
