@@ -13,8 +13,8 @@ services:
       - ./env/production.env
     links:
       - mongodb
-    depends_on:
-      - mongodb
+    # depends_on:
+    #   - mongodb
     command: "npm start"
   # mongodb:
   #   image: mongo:latest
