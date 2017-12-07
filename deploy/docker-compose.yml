@@ -1,6 +1,6 @@
 version: "2"
 services:
-  question-overflow:
+  buzon-quejas:
     image: "node:8"
     container_name: "buzon-quejas-app"
     user: "node"
