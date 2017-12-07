@@ -1,0 +1,29 @@
+version: "2"
+services:
+  question-overflow:
+    image: "node:8"
+    container_name: "buzon-quejas-app"
+    user: "node"
+    working_dir: /home/node/app
+    volumes:
+      - /opt/buzon-quejas/source-code:/home/node/app
+    ports:
+      - "12000:3000"
+    env_file:
+      - ./env/production.env
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+    command: "npm start"
+  mongodb:
+    image: mongo:latest
+    container_name: "mongodb"
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - /opt/buzon-quejas/data:/data/db
+    ports:
+        - 27017:27017
+    command: mongod --smallfiles --logpath=/dev/null
