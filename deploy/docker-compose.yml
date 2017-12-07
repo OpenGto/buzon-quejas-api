@@ -13,8 +13,6 @@ services:
       - ./env/production.env
     links:
       - mongodb-buzon
-    # external_links:
-    #   - mongodb
     depends_on:
       - mongodb-buzon
     command: "npm start"
@@ -27,5 +25,5 @@ services:
     volumes:
       - /opt/buzon-quejas/data:/data/db
     ports:
-        - 27017:27017
+        - 27018:27017
     command: mongod --smallfiles --logpath=/dev/null
